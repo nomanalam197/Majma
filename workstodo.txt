@@ -1,0 +1,9 @@
+1. Message
+2. Status
+3. Password Change with nodemailer
+4. username Change with nodemailer
+5. forgot password with nodemailer
+6. Account Deletion with nodemailer
+7. Followers and following list
+8. blog deletion
+9. comment deletion

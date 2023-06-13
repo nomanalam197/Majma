@@ -1,0 +1,199 @@
+For Story
+
+<div id="storySection">
+          <div class="storiesDiv">
+            <div class="story">
+              <div class="storyInside">
+                <div class="picDiv">
+                  <div class="sImg">
+                    <img src="/images/shadabProfile.jpg" alt="">
+                  </div>
+                </div>
+                <div class="usernameBox">Shadab Mahtabi</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+#storySection {
+  height: 17vh;
+  width: 100%;
+  /* background-color: rgb(214, 210, 155); */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  border-bottom: 1px solid #000;
+}
+
+#storySection .storiesDiv {
+  height: fit-content;
+  width: 80%;
+  white-space: nowrap;
+  /* padding: .5vw; */
+  /* background-color: aquamarine; */
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.storiesDiv::-webkit-scrollbar {
+  display: none;
+}
+
+#storySection .storiesDiv .story {
+  height: 6.5vw;
+  width: 7vw;
+  /* background-color: rgb(249, 175, 175); */
+  /* border-radius: 50%; */
+  margin-right: .5vw;
+  display: inline-block;
+}
+
+.story .storyInside{
+  height: 100%;
+  width: 100%;
+  /* background-color: chartreuse; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.story .storyInside .picDiv{
+  position: relative;
+  height: 5.3vw;
+  width: 5.3vw;
+  /* background-color: rgb(255, 0, 0); */
+  /* background: linear-gradient(145deg, var(--blue) 10%, var(--purple) 70%); */
+  /* background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); */
+  background: linear-gradient(to bottom, #D8BFD8 0%, #C9B0C9 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.story .storyInside .picDiv .line{
+  position: absolute;
+  display: block;
+  left: 50%;
+  /* top: 0; */
+  /* left: 0; */
+  height: .2vw;
+  width: 10vw;
+  background-color: red;
+  transform-origin: 0 2.35vw;
+}
+
+.story .storyInside .picDiv .sImg{
+  height: 90%;
+  width: 90%;
+  overflow: hidden;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.story .storyInside .picDiv .sImg img{
+  height: 90%;
+  width: 90%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.story .storyInside .usernameBox{
+  height: 1.3vw;
+  width: 100%;
+  /* background-color: rgb(184, 184, 184); */
+  font-size: .8rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+
+// if female
+
+<% if(user.gender === 'female' || user.gender === 'Female'){ %>
+  <h2><%= user.name %></h2>
+  <h3><i class="ri-user-6-fill" style="color: rgb(255, 139, 197);"></i> <%= user.username %></h3>
+  <% if(user.bio){ %>
+      <h3><i class="ri-edit-fill" style="color: rgb(255, 139, 197);"></i> <%= user.bio %></h3>
+  <% } %>
+  <h3><i class="ri-mail-fill" style="color: rgb(255, 139, 197);"></i> <%= user.email %></h3>
+  <h3>
+      <% if(user.gender){ %>
+          <i class="ri-women-fill" style="color: rgb(255, 139, 197);"></i> <%= user.gender %> 
+      <% } %>
+      <% if(user.age){ %>
+          | <%= user.age %> yrs
+      <% } %>
+  </h3>
+<% }else{ %>
+  <h2><%= user.name %></h2>
+  <h3><i class="ri-user-6-fill"></i> <%= user.username %></h3>
+  <% if(user.bio){ %>
+      <h3><i class="ri-edit-fill"></i> <%= user.bio %></h3>
+  <% } %>
+  <h3><i class="ri-mail-fill"></i> <%= user.email %></h3>
+  <h3>
+      <% if(user.gender){ %>
+          <i class="ri-women-fill"></i> <%= user.gender %> 
+      <% } %>
+      <% if(user.age){ %>
+          | <%= user.age %> yrs
+      <% } %>
+  </h3>
+<% } %>
+
+
+
+// '/' route
+
+var allUsers = await userModel.find();
+  var postsArray = [];
+  allUsers.forEach(async user => {
+    const data = await user.populate("posts");
+    data.posts.forEach(async p=>{
+      var post = await p.populate("user");
+      // console.log(post);
+      postsArray.push(post);
+    })
+    // console.log(data.posts);
+  })
+  console.log(postsArray);
+
+  function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
+
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+  }
+
+  allUsers = shuffle(allUsers);
+
+  const formatter = Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 }); //, maximumFractionDigits: 3, 30000 to compact => 30K, standard => 30,000, scientific => 3E4 & engineering => 30E3
+  var number;
+
+  number = await crypto.randomInt(0, 10000000);
+  var value = formatter.format(number);
+
+
+
+  /// like
+
+  <% if(post.likes.indexOf(loggedInUser._id) === -1){ %>
+                              <% }else{ %>
+                                <i class="ri-heart-2-fill" style="color: red;"></i>
+                            <% } %>

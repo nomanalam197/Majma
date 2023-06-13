@@ -1,0 +1,87 @@
+#main{
+    height: 100%;
+    width: 100%;
+    /* background-color: yellow; */
+    display: flex;
+}
+
+#main .settingsSection{
+    height: 100%;
+    width: 80%;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0;
+    gap: 20px;
+}
+
+#main .settingsSection .setNav{
+    height: 10%;
+    width: 95%;
+    /* background-color: red; */
+    background-image: var(--background);
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    border-radius: 1vh;
+    box-shadow: rgba(0, 0, 0, 0.154) 0px 4px 12px;
+}
+
+.setNav h1{
+    font-size: 1.8rem;
+    color: var(--textColor);
+}
+
+#main .settingsSection .passwordForm{
+    height: 85%;
+    width: 95%;
+    /* background-color: red; */
+    background-image: var(--background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0;
+    border-radius: 1vh;
+    box-shadow: rgba(0, 0, 0, 0.154) 0px 4px 12px;
+}
+
+.passwordForm form{
+    height: 70%;
+    width: 50%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 1vh;
+}
+
+.passwordForm form h1{
+    /* font-size: 1.2rem; */
+    color: var(--textColor);
+    margin-bottom: 20px;
+}
+
+.passwordForm form input{
+    height: 15%;
+    width: 70%;
+    border-radius: 30px;
+    padding: 0 1.5vw;
+    background-image: var(--background);
+    font-size: 1rem;
+    outline: none;
+    border: none;
+}
+
+.passwordForm form button{
+    padding: 12px 35px;
+    border-radius: 30px;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    background-color: var(--btnColor);
+    color: var(--btnTextColor);
+}
