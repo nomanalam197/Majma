@@ -44,6 +44,8 @@ function appendMessage(msg, type) {
     `
 
     messageDiv.innerHTML = contents;
+    // https://www.encodedna.com/javascript/append-or-add-text-to-div-using-javascript.htm#:~:text=Method%202%3A%20Add%20text%20to%20DIV%20using%20appendChild()%20Method&text=With%20innerHTML%2C%20you%20can%20directly,contents%20to%20the%20.
+    // appendchild definetion in above linkn
     chatList.appendChild(messageDiv);
 }
 

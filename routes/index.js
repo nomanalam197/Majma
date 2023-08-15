@@ -98,7 +98,8 @@ function isLoggedIn(req, res, next) {
 
 // GridFs Storage
 
-const url = "mongodb://127.0.0.1:27017/majmaDatabase";
+const url = process.env['URL_ONE']
+// const url = "mongodb://127.0.0.1:27017/majmaDatabase";
 
 mongoose.connect(url).then(() => {
   console.log('Connected to database!');
@@ -189,7 +190,7 @@ router.post('/editProfile', upload.single("file"), async (req, res, next) => {
     await user.posts.push(post._id);
     userModel.findOne({ username: req.session.passport.user }).then(u => {
       u.profilePic = file.filename;
-      u.save();
+      u.save();rc
     })
     await user.save();
     res.redirect('back');
@@ -426,6 +427,7 @@ router.get('/profile/:id', isLoggedIn, async function (req, res, next) {
   user.posts.map(post => {
     sumComments.push(post.comments.length);
   })
+  // https://reqbin.com/code/javascript/m81eb1ms/javascript-sum-array-example#:~:text=To%20get%20the%20sum%20of,call%20to%20the%20next%20call.
   const totalComments = sumComments.reduce((partialSum, a) => partialSum + a, 0);
   // console.log(totalComments);
 
